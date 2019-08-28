@@ -1,0 +1,5 @@
+def nodes = Jenkins.instance.nodes
+    .collect { it.computer }
+    .findAll { it.online }
+    .sort { it.executors.findAll { it.isBusy() }}
+    .collect { it.name }
